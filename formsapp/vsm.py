@@ -69,16 +69,37 @@ def handleQuery(query):
     query_vector = vectorizerX.transform([query])
     cosineSimilarities = cosine_similarity(doc_vector, query_vector).flatten()
     related_docs_indices = cosineSimilarities.argsort()[:-10:-1]
-    print(related_docs_indices)
+    # print(data_proccessed[related_docs_indices[0]])
+    your_string = data_proccessed[related_docs_indices[0]]
+    removal_list = ["elevation560", "popul", "2011", "india"]
+
+    edit_string_as_list = your_string.split()
+
+    final_list = [word for word in edit_string_as_list if word not in removal_list]
+    final_string = ' '.join(final_list)
+    # print(final_string)
     return related_docs_indices
     # print(data_proccessed[related_docs_indices[0]])
 
+def getDocsGivenIndices(indices_list):
+    resultStr = []
+    for i in indices_list:
+        resultStr.append(indexDict.get('value')[i])
+    print(resultStr)
+    return resultStr
+
 data = []
+i = 0
+indexDict = {'key' : [], 'value': []}
 for filename in os.listdir('D:\\Nivedhithaa\\Ninth Semester\\lab\\irrLab\\data\\citiesData'):
     with open(os.path.join('D:\\Nivedhithaa\\Ninth Semester\\lab\\irrLab\\data\\citiesData\\', filename), 'r',
               encoding='utf-8') as f:
+        # print(f.read())
+        indexDict['key'].append(i)
+        indexDict['value'].append(filename.replace("_wiki.txt", ""))
+        i+=1
         data.append(f.read())
-# print(len(data))
+print(indexDict)
 stop_words = set(stopwords.words('english'))
 # print(stop_words)
 data_proccessed = []
@@ -93,5 +114,7 @@ vectorizerX.fit(data_proccessed)
 
 doc_vector = vectorizerX.transform(data_proccessed)
 df1 = pd.DataFrame(doc_vector.toarray(), columns=vectorizerX.get_feature_names())
-# print(df1)
-# queriesProcess()
+queriesProcess()
+out = handleQuery("flights needed from bangalore to pune")
+# print(type(out))
+# getDocsGivenIndices([0,1])

@@ -1,0 +1,50 @@
+
+
+/*** Variables ***/
+:root {
+  --width-body:   54rem;   /* Width of main body text. */
+  --pad-x:        4rem;    /* Padding to the side of the body. */
+  --pad-y:        1rem;    /* Padding to the top and bottom of the body. */
+  --color-bg:     #fff;    /* Background colour of main body text. */
+  --color-text:   #252525; /* Colour of main body text. */
+  --color-border: #aaa;    /* Border colour for table, fieldset, input. */
+
+  /* A font I rather like.
+   *
+   * Possible sans-serif alternative; note you may want to adjust the
+   * line-height and font-size if you want the fonts. Different values work
+   * better for different fonts.
+   *
+   *    --font: 18px/160% Calibri, 'DejaVu Sans Serif', sans-serif;
+   *
+   * Note the full font is also defined in the media queries below.
+   */
+  --font: 16px/180% 'Libre Baskerville', 'DejaVu Serif', 'Bitstream Vera Serif', 'Georgia', serif;
+
+  /* Padding for full-width pre, table, and figure (.full class); needs to be a
+   * variable here since we can't use variables inside media queries. */
+  --full-margin-left: calc(-1 * var(--pad-x));
+  --full-width: calc(100% + calc(var(--pad-x) * 2));
+}
+html {
+  font: var(--font);
+
+          text-size-adjust: none;      /* Disables text adjustment algorithm on some mobile browsers, this is */
+  -webkit-text-size-adjust: none;      /* intended for sites that are not designed for mobile viewing. */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  /* Enable ligatures, works well with Libre Baskerville, which adds
+   * (old-fashioned but handsome) ligatures on "st", "ct", and "sp".
+   *
+   * You'll need to add "&subset=all" if you're using it from Google Fonts:
+   *   https://fonts.googleapis.com/css?family=Libre+Baskerville&subset=all
+   */
+  font-variant-ligatures: common-ligatures discretionary-ligatures;
+  font-feature-settings: 'liga' on, 'dlig' on;
+}
+h2 {
+  border-bottom: 1px solid var(--color-text);  /* Underline to stand out more. */
+  padding-bottom: .2em;                /* Border not too close to the text. */
+  font-size: 1.5em;                    /* Default of 1.8em is pretty large. */
+}

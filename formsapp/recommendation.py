@@ -21,9 +21,14 @@ def recEngine(fromCity, toCity):
     soup = BeautifulSoup(r.content, 'html.parser')
     # soup.find('div', {'class':'footer-wrapper_links'}).find_all('a')
     recommendations = []
+    # if(soup.find('div', {'class': 'common-stylesstyles__CommonDetails-sc-uferee-1 list-for-linksstyles__Details-sc-18mazeo-0 jVkNuU IEHrn'}) == 'NoneType')
+    #     flag =
     for i in soup.find('div', {'class': 'common-stylesstyles__CommonDetails-sc-uferee-1 list-for-linksstyles__Details-sc-18mazeo-0 jVkNuU IEHrn'}):
         # print(i)
         recommendations.append(i)
     # print(link)
     recommendations = remove_tags(str(recommendations))
     return recommendations
+
+# print(recEngine("bangalore", "coimbatore"))
+# print(type(recEngine("bangalore", "coimbatore"))

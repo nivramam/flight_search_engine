@@ -5,5 +5,6 @@ from django.conf.urls import url
 urlpatterns = [
     path('', views.index, name='index'),
     url('saveCriteria', views.saveCriteria, name='saveCriteria'),
-    url('getRecom', views.getRecom, name='getRecom')
+    url('getRecom', views.getRecom, name='getRecom'),
+    url('clusterBasedOnAQI', views.clusterBasedOnAQI, name='clusterBasedOnAQI')
 ]
